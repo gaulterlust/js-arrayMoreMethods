@@ -9,7 +9,15 @@
 "Для заокруглення числа можна до десятих використовуйте .toFixed(1)"
 
 function addSuccessPercent(olympicRepresentation) {
-  // Ваш код
+  const percentOlympic = olympicRepresentation
+  .map(({ medals, athletes, ...rest }) => {
+    let result = (medals / athletes * 100).toFixed(1);
+    let percentOfSuccess = isNaN(result) || !isFinite(result) ? "0%" : `${result}%`;
+
+    return { ...rest, medals, athletes, percentOfSuccess };
+  });
+return percentOlympic;
+
 }
 
 const olympicRepresentation = [
